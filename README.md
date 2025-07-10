@@ -1,80 +1,113 @@
-# 🏗 Scaffold-ETH 2
+# SimpleSwap DApp with Scaffold-ETH
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+This project is a decentralized application (dApp) built using **Scaffold-ETH**, enabling interaction with three smart contracts deployed on the Sepolia testnet:
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+- **SimpleSwap**: The main contract facilitating token swaps.
+- **TokenA**: A custom ERC-20 token with minting functionality.
+- **TokenB**: Another custom ERC-20 token with minting functionality.
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+---
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+## Table of Contents
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Deploying Contracts](#deploying-contracts)
+- [Running the Frontend](#running-the-frontend)
+- [Minting Tokens](#minting-tokens)
+- [Interacting with SimpleSwap](#interacting-with-simpleswap)
+- [Folder Structure](#folder-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Requirements
+---
 
-Before you begin, you need to install the following tools:
+## Project Overview
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+This dApp allows users to mint TokenA and TokenB and swap between them using the SimpleSwap contract. The project is built on top of Scaffold-ETH v1 with a Next.js frontend, leveraging ethers.js for blockchain interactions.
 
-## Quickstart
+---
 
-To get started with Scaffold-ETH 2, follow the steps below:
+## Features
 
-1. Install dependencies if it was skipped in CLI:
+- Mint TokenA and TokenB tokens directly from the frontend.
+- Swap tokens using the SimpleSwap contract.
+- Connect wallet via MetaMask or WalletConnect.
+- Supports Sepolia testnet.
 
-```
-cd my-dapp-example
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 16.x
+- Yarn package manager
+- MetaMask or WalletConnect-compatible wallet
+
+### Installation
+
+Clone the repository:
+
+git clone https://github.com/diegoprego/SimpleSwap_Scaffold_Front
+cd your-repo/packages/nextjs
 yarn install
-```
 
-2. Run a local network in the first terminal:
+## Environment Variables
 
-```
-yarn chain
-```
+Create a `.env.local` file inside `packages/nextjs/` with the following variables:
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
+NEXT_PUBLIC_ALCHEMY_API_KEY=your-alchemy-api-key
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your-walletconnect-project-id
+NEXT_PUBLIC_SIMPLE_SWAP_ADDRESS=deployed-simple-swap-address
+NEXT_PUBLIC_TOKEN_A_ADDRESS=deployed-token-a-address
+NEXT_PUBLIC_TOKEN_B_ADDRESS=deployed-token-b-address
+NEXT_PUBLIC_CHAIN_ID=11155111
 
-3. On a second terminal, deploy the test contract:
+> **Note:** Replace the placeholders with your actual API keys and deployed contract addresses.
 
-```
-yarn deploy
-```
+---
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+## Deploying Contracts
 
-4. On a third terminal, start your NextJS app:
+Contracts are located in the `packages/hardhat/contracts` folder.
 
-```
-yarn start
-```
+To deploy contracts to Sepolia:
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-Run smart contract test with `yarn hardhat:test`
-
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+cd packages/hardhat
+yarn deploy --network sepolia
 
 
-## Documentation
+This will deploy SimpleSwap, TokenA, and TokenB contracts and output their addresses.
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+---
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+## Running the Frontend
 
-## Contributing to Scaffold-ETH 2
+Start the frontend development server:
 
-We welcome contributions to Scaffold-ETH 2!
+cd packages/nextjs
+yarn dev
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+Open http://localhost:3000 in your browser.
+
+## Minting Tokens
+
+- Navigate to the TokenA or TokenB mint section in the UI.
+- Connect your wallet.
+- Specify the amount to mint and confirm the transaction.
+- Tokens will be minted to your connected wallet on Sepolia.
+
+---
+
+## Interacting with SimpleSwap
+
+- Use the swap interface to exchange TokenA for TokenB or vice versa.
+- Ensure you have approved SimpleSwap contract to spend your tokens.
+- Confirm the swap transaction in your wallet.
+
+---
+
+Or visit https://simple-swap-scaffold-front-nextjs.vercel.app/ ;-p
