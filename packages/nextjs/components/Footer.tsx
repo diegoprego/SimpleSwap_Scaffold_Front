@@ -47,10 +47,16 @@ export const Footer = () => {
         <ul className="menu menu-horizontal w-full">
           <div className="flex justify-center items-center gap-2 text-sm w-full">
             <div className="text-center">
-              <a href="https://github.com/scaffold-eth/se-2" target="_blank" rel="noreferrer" className="link">
+              <a
+                href="https://github.com/diegoprego/SimpleSwap_Scaffold_Front"
+                target="_blank"
+                rel="noreferrer"
+                className="link"
+              >
                 Fork me
               </a>
             </div>
+            {/*}
             <span>·</span>
             <div className="flex justify-center items-center gap-2">
               <p className="m-0 text-center">
@@ -72,6 +78,7 @@ export const Footer = () => {
                 Support
               </a>
             </div>
+            */}
           </div>
         </ul>
       </div>
